@@ -1,0 +1,30 @@
+<div>
+    <canvas style="margin-bottom:50px" id="{% if include.divid %}{{ include.divid }}{% else %}chart-area{% endif %}"></canvas>
+</div>
+<script>
+{% assign number = include.counts|size %}
+var config = {
+    type: 'bar',
+    data: {
+        datasets: [{
+            data: [{% for count in include.counts %}{{ count[1] }}{% if forloop.last %}{% else %},{% endif %}{% endfor %}],
+            backgroundColor: palette('tol{% if number > 12 %}-dv{% endif %}', {{ include.counts|size }}).map(function(hex) {
+                return '#' + hex;
+            }),
+            labels: ['Dataset 1', 'Dataset 2']
+        }],
+        labels:{% if include.labels %}{% assign labels = include.labels | split: ',' %}[{% for label in labels %}"{{ label }}"{% if forloop.last %}{% else %},{% endif %}{% endfor %}]{% else %}[{% for count in include.counts %}"{{ count[0] }}"{% if forloop.last %}{% else %},{% endif %}{% endfor %}]{% endif %},
+        borderWidth:1
+    },
+    options: {
+        responsive: true,
+        scales:{"yAxes":[{"ticks":{"beginAtZero":true}}]},
+        legend: {
+            display: false,
+        }
+    }
+};
+
+var ctx = document.getElementById("{% if include.divid %}{{ include.divid }}{% else %}chart-area{% endif %}").getContext('2d');
+var chart{{ include.divid }} = new Chart(ctx, config);
+</script>

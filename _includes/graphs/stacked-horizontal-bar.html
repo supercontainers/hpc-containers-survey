@@ -1,0 +1,106 @@
+<div>
+    <canvas style="margin-bottom:50px" id="{% if include.divid %}{{ include.divid }}{% else %}chart-area{% endif %}"></canvas>
+</div>
+<script>
+//        scales:{"yAxes":[{"ticks":{"beginAtZero":true}}]},
+//        legend: {
+//          display: false,
+
+
+var barOptions_stacked = {
+    responsive: true,
+    //tooltips: {
+    //    enabled: false
+   // },
+    tooltips: {
+      displayColors: true,
+      callbacks:{
+        mode: 'x',
+      },
+    },
+    hover :{
+        animationDuration:0
+    },
+    scales: {
+        xAxes: [{
+            ticks: {
+                beginAtZero:true,
+                fontFamily: "'Open Sans Bold', sans-serif",
+                fontSize:11
+            },
+            scaleLabel:{
+                display:false
+            },
+            stacked: true
+        }],
+        yAxes: [{
+            gridLines: {
+                display:false,
+                color: "#fff",
+                zeroLineColor: "#fff",
+                zeroLineWidth: 0
+            },
+            ticks: {
+                fontFamily: "'Open Sans Bold', sans-serif",
+                fontSize:11
+            },
+            stacked: true
+        }]
+    },
+    responsive: true,
+    maintainAspectRatio: false,
+    legend: { display: false },
+    pointLabelFontFamily : "Quadon Extra Bold",
+    scaleFontFamily : "Quadon Extra Bold",
+};
+
+/*
+options: {
+    scales: {
+      xAxes: [{
+        stacked: true,
+        gridLines: {
+          display: false,
+        }
+      }],
+      yAxes: [{
+        stacked: true,
+        ticks: {
+          beginAtZero: true,
+        },
+        type: 'linear',
+      }]
+    },
+    responsive: true,
+    maintainAspectRatio: false,
+    legend: { position: 'bottom' },
+  }
+});*/
+
+
+var labels = [{% for label in include.labels %}"{{ label }}"{% if forloop.last %}{% else %},{% endif %}{% endfor %}]
+console.log(labels)
+
+var config = {
+    type: 'horizontalBar',
+    data: {
+        labels: [{% for label in include.data %}"{{ label[0] }}"{% if forloop.last %}{% else %},{% endif %}{% endfor %}],        
+        borderWidth:1,
+        datasets: [{% for dataset in include.data %}{
+            label:  labels,
+            data: [{% for number in dataset[1] %}{{ number }}{% if forloop.last %}{% else %},{% endif %}{% endfor %}],
+            backgroundColor: palette('tol{% if number > 12 %}-dv{% endif %}', {{ include.data|size }}).map(function(hex) {
+                return '#' + hex;
+            }),
+            hoverBackgroundColor: "rgba(50,90,100,1)"
+        }{% if forloop.last %}{% else %},{% endif %}{% endfor %}]
+    },
+    options: barOptions_stacked,
+}
+
+var ctx = document.getElementById("{% if include.divid %}{{ include.divid }}{% else %}chart-area{% endif %}").getContext('2d');
+var chart{{ include.divid }} = new Chart(ctx, config);
+</script>
+
+
+

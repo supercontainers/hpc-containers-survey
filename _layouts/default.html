@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>{% if page.title %}{{page.title}}{% else %}{{ site.title | escape }}{% endif %}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300&display=swap" rel="stylesheet"> 
+  <link rel="icon" type="image/png" href="{{ site.baseurl }}/assets/img/favicon.ico">
+  <link href="{{ site.baseurl }}/assets/css/style.css" rel="stylesheet">
+  {% if page.description %}
+  <meta name="description" content="{{ page.description }}" />
+  {% endif %}
+  <meta property="og:title" content="{{ site.title }}" />
+  <meta property="og:image" content="{{ site.baseurl }}/assets/img/dev-survey-2022.png" />
+  <meta property="og:description" content="{{ site.description }}" />
+</head>
+<body class='page {{page.bodyClass}}'>
+  {% include main-menu-mobile.html %}
+  <div id="wrapper" class="wrapper">
+    {% include header.html headerClass='header-extra' %}
+    {{content}}
+  </div>
+  {% include footer.html %}
+  {% include sub-footer.html %}
+  <script type="text/javascript" src="{{ "/assets/js/scripts.js" | relative_url }}""></script>
+  {% include google-analytics.html %}
+</body>
+</html>

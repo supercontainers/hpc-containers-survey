@@ -1,0 +1,151 @@
+<style>
+.cloud {
+    width: 100%;
+    height: auto;
+}
+.cloud svg {
+    border: 1px solid #F7F7F7;
+}
+</style>
+<div>
+    <div style="margin-bottom:50px" class="cloud" id="{% if include.divid %}{{ include.divid }}{% else %}cloud-area{% endif %}"></div>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-cloud/1.2.5/d3.layout.cloud.min.js"></script>
+
+<script>
+textinput = "{% for text in include.values %} {{ text }}{% endfor %}"
+
+function remove_stopwords(str) {
+    res = []
+    words = str.split(' ')
+    for(i=0;i<words.length;i++) {
+       word_clean = words[i].replace(/[^\w\s\']|_/g, "").replace(/\s+/g, " ").split(".").join("")
+       if(!stopwords.includes(word_clean.toLowerCase())) {
+           res.push(word_clean.toLowerCase())
+       }
+    }
+    return(res.join(' '))
+}  
+
+// Remove stopwords (these are from nltk) along with custom ones that I added.
+stopwords = ['i','me','my','myself','we','our','ours','ourselves','you','your','yours','yourself','yourselves','he','him','his','himself','she','her', "i've",
+ "i'm", 'hers','herself','it','its','itself','they','them','their','theirs','themselves','what','which','who','whom','this','that','these','those','am','is','are',
+ 'was','were','be','been','being','have','has','had','having','do','does','did','doing','a','an','the','and','but','if','or','because','as','until','while','of',
+ 'at','by','for','with','about','against','between','into','through','during','before','after','above','below','to','from','up','down','in','out','on','off','over',
+ 'under','again','further','then','once','here','there','when','where','why','how','all','any','both','each','few','more','most','other','some','such','no','nor','not',
+ 'only','own','same','so','than','too','very','s','t','can','will','just','don','should','now', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '10', '11', '12', '13',
+ '14', "it's", '12', '75', '73', '23', '491', 'ie', 'eg', 'ah', '17', 'aka', 'ya', "i'd", '20', '45', '15', "i'll"]
+
+words = sortByFrequency( remove_stopwords(textinput).split(/[ ,.]+/) )
+    .map(function(d,i) {return {text: d, size: -i}});
+
+var fontName = "Impact",
+    cWidth = 720,
+    cHeight = 400,
+    svg,
+    wCloud,
+    bbox,
+    ctm,
+    bScale,
+    bWidth,
+    bHeight,
+    bMidX,
+    bMidY,
+    bDeltaX,
+    bDeltaY;
+
+var cTemp = document.createElement('canvas'),
+    ctx = cTemp.getContext('2d');
+    ctx.font = "100px " + fontName;
+
+var fRatio = Math.min(cWidth, cHeight) / ctx.measureText(words[0].text).width,
+    fontScale = d3.scale.linear()
+        .domain([
+            d3.min(words, function(d) { return d.size; }), 
+            d3.max(words, function(d) { return d.size; })
+        ])
+        //.range([20,120]),
+        .range([20,100*fRatio/2]), // tbc
+    fill = d3.scale.category20();
+
+d3.layout.cloud()
+    .size([cWidth, cHeight])
+    .words(words)
+    //.padding(2) // controls
+    .rotate(function() { return ~~(Math.random() * 2) * 90; })
+    .font(fontName)
+    .fontSize(function(d) { return fontScale(d.size) })
+    .on("end", draw)
+    .start();
+
+function draw(words, bounds) {
+    // move and scale cloud bounds to canvas
+    // bounds = [{x0, y0}, {x1, y1}]
+    bWidth = bounds[1].x - bounds[0].x;
+    bHeight = bounds[1].y - bounds[0].y;
+    bMidX = bounds[0].x + bWidth/2;
+    bMidY = bounds[0].y + bHeight/2;
+    bDeltaX = cWidth/2 - bounds[0].x + bWidth/2;
+    bDeltaY = cHeight/2 - bounds[0].y + bHeight/2;
+    bScale = bounds ? Math.min( cWidth / bWidth, cHeight / bHeight) : 1;
+    
+    console.log(
+        "bounds (" + bounds[0].x + 
+        ", " + bounds[0].y + 
+        ", " + bounds[1].x + 
+        ", " + bounds[1].y + 
+        "), width " + bWidth +
+        ", height " + bHeight +
+        ", mid (" + bMidX +
+        ", " + bMidY +
+        "), delta (" + bDeltaX +
+        ", " + bDeltaY +
+        "), scale " + bScale
+    );
+    
+    // the library's bounds seem not to correspond to reality?
+    // try using .getBBox() instead?
+    
+    svg = d3.select("#{% if include.divid %}{{ include.divid }}{% else %}cloud-area{% endif %}").append("svg")
+        .attr("width", cWidth)
+        .attr("height", cHeight);
+    
+    wCloud = svg.append("g")
+        //.attr("transform", "translate(" + [bDeltaX, bDeltaY] + ") scale(" + 1 + ")") // nah!
+        .attr("transform", "translate(" + [bWidth>>1, bHeight>>1] + ") scale(" + bScale + ")") // nah!
+        .selectAll("text")
+        .data(words)
+        .enter().append("text")
+        .style("font-size", function(d) { return d.size + "px"; })
+        .style("font-family", fontName)
+        .style("fill", function(d, i) { return fill(i); })
+        .attr("text-anchor", "middle")
+        .transition()
+        .duration(500)
+        .attr("transform", function(d) {
+            return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+        })
+        .text(function(d) { return d.text; });
+    
+    // TO DO: function to find min and max x,y of all words
+    // and use it as the group's bbox
+    // then do the transformation
+    bbox = wCloud.node(0).getBBox();
+    //ctm = wCloud.node().getCTM();
+    console.log(
+        "bbox (x: " + bbox.x + 
+        ", y: " + bbox.y + 
+        ", w: " + bbox.width + 
+        ", h: " + bbox.height + 
+        ")"
+    );
+    
+};
+
+function sortByFrequency(arr) {
+    var f = {};
+    arr.forEach(function(i) { f[i] = 0; });
+    var u = arr.filter(function(i) { return ++f[i] == 1; });
+    return u.sort(function(a, b) { return f[b] - f[a]; });}
+</script>

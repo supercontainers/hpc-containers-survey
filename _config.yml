@@ -1,0 +1,34 @@
+baseurl: "/hpc-containers-survey"
+url: ""
+permalink: /:year/:title/
+title: 'The HPC Containers Survey'
+
+google_analytics_id: ""
+
+# Link to post with current results to appear at the top of home
+current_results: /2024/two-thousand-twenty-four/
+footer:
+  copyright_text: 'Copyright 2024'
+
+defaults:
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "page"
+
+exclude:
+  - _site
+  - CHANGELOG.md
+  - Gemfile
+  - Gemfile.lock
+  - LICENSE
+  - README.md
+  - vendor
+  - _data/software/2020.yml
+  - env
+
+collections:
+  results:
+    output: true

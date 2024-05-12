@@ -1,0 +1,36 @@
+{% capture the_collection %}{{page.collection}}{% endcapture %}
+
+  {% if page.collection %}
+    {% assign  document = site[the_collection] %}
+  {% endif %}
+
+{% for links in document  %}
+  {% if links.title == page.title %}
+    {% unless forloop.first %}
+      {% assign prevurl = prev.url %}
+    {% endunless %}
+    {% unless your_collection_name.last.url %}
+      {% assign next = document[forloop.index] %}
+      {% assign nexturl = next.url %}
+    {% endunless %}
+  {% endif %}
+  {% assign prev = links %}
+  {% if page.collection %}
+    {% assign  document = site[the_collection] %}
+  {% endif %}
+
+{% for links in document  %}
+  {% if links.title == page.title %}
+    {% unless forloop.first %}
+      {% assign prevurl = prev.url %}
+    {% endunless %}
+    {% unless your_collection_name.last.url %}
+      {% assign next = document[forloop.index] %}
+      {% assign nexturl = next.url %}
+    {% endunless %}
+  {% endif %}
+  {% assign prev = links %}
+{% endfor %}{% endfor %}
+
+{% if prevurl %}<a style="float:left" href="{{ site.baseurl }}/{{ prevurl }}" class="button"> Previous: {{ page.previous.title | truncate: 40 }}</a>{% endif %}
+{% if nexturl %}<a style="float:right" href="{{ site.baseurl }}/{{ nexturl }}" class="button">Next: {{ page.next.title | truncate: 40 }}</a>{% endif %}

@@ -1,0 +1,65 @@
+<style>
+.summary-item {
+  border-radius: 3px;
+  padding: 5px;
+  background-color: #d6e0ff;
+  margin: 5px;
+}
+mark {
+  background: yellow;
+}
+
+mark.current {
+  background: orange;
+}
+</style>
+<div id="{% if include.divid %}{{ include.divid }}{% else %}summary_area{% endif %}">
+<div class="row">
+    <div class="col-md-12">
+    <p><input type="search" id="search{% if include.divid %}{{ include.divid }}{% else %}summary_area{% endif %}" onkeyup="search{% if include.divid %}{{ include.divid }}{% else %}summary_area{% endif %}()" placeholder="Search for terms..." />
+    </p>
+    <div class="list-group">{% for entry in include.values %}{% if entry != "" %}
+      <div href="#" class="list-group-item list-group-item-action summary-item">{{ entry }}</div>{% endif %}{% endfor %}
+    </div>
+  </div>
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/g/jquery@2.2.4,mark.js@8.6.0(jquery.mark.min.js)"></script>
+<script>
+function search{% if include.divid %}{{ include.divid }}{% else %}summary_area{% endif %}() {
+
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById('search{% if include.divid %}{{ include.divid }}{% else %}summary_area{% endif %}');
+  filter = input.value.toUpperCase();
+  items = document.getElementsByClassName('summary-item');
+
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < items.length; i++) {
+    a = items[i];
+    txtValue = a.textContent || a.innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      items[i].style.display = "";
+    } else {
+      items[i].style.display = "none";
+    }
+  }
+}
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function(event) { 
+  var $input = $("input[type='search']"),
+    $context = $(".summary-item");
+    $input.on("input", function() {
+    var term = $(this).val();
+    $context.show().unmark();
+        if (term) {
+           $context.mark(term, {done: function() {
+              $context.not(":has(mark)").hide()
+             }
+           })
+          }
+      })
+    })
+</script>
