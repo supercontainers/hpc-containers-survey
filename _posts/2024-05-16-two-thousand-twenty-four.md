@@ -5,7 +5,9 @@ draft: false
 layout: post
 ---
 
-The HPC Container Community Survey has been a long time coming. We kicked off the idea as part of the [Containers Working Group](https://supercontainers.github.io/containers-wg/ideas/container-technologies-survey/) but it stopped in its tracks due to too many cooks in the kitchen, and "perfection is the enemy of the good." Earlier this year we realized how valuable the insights would be, even to understand basics about container technology usage, and the effort was rekindled. We got <span style="font-weight:600">202 responses</span> in total, making this first year a great success!
+This is the first HPC Container Community Survey that will provide insights to container usage of the HPC community. The idea was originally proposed as part of the <a href="https://supercontainers.github.io/containers-wg/ideas/container-technologies-survey/" target="_blank">Containers Working Group</a>, but it was stopped in its tracks. Earlier this year we realized how valuable the insights would be, even to understand basics about container technology usage, and the effort was rekindled. We got <span style="font-weight:600">202 responses</span> in total, presenting the results at the <a href="https://www.linkedin.com/posts/isc-hpc_isc24-reinventinghpc-hpc-activity-7196781879134429187-PmFf?utm_source=share&utm_medium=member_desktop" target="_blank">High Performance Container Workshop</a> (<a href="https://container-in-hpc.org/isc/2024/hpcw/index.html" target="_blank">agenda</a>). We think that this first year was great success!
+
+<iframe width="100%" height="400" src="https://www.youtube.com/embed/RgMDAT7lHU4?si=_KkeyON1xFWN_Km0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 <div class="call-box-bottom" style="padding-bottom:50px">
   <a href="{{ site.baseurl }}/results/" class="button">View Full Results</a>
@@ -33,7 +35,7 @@ from more beginners.
 {% assign counts = site.data.cleaned.containers-in-hpc-2024["What is your primary environment?"].counts %}
 {% include graphs/pie.html counts=counts divid="chart_environment_2024" %}
 
-Most of you are in academia, followed by Commercial environments and national laboratories and even consulting. This
+Most of you are in academia, followed by commercial environments and national laboratories and even consulting. This
 is both an expected result and fantastic to see the diversity of our community.
 
 <p class="team team-summary team-summary-large">Container usage in HPC spans academia, national labs, industry, and beyond.</p>
@@ -126,6 +128,7 @@ Our HPC package managers are leaders in helping us to build containers.
 {% include graphs/pie.html counts=counts divid="chart_push_registry_2024" %}
 
 The fact that almost half of the community is not pushing images to a central registry is concerning, as it indicates reproducibility might be less likely. If you need help with creating a CI/CD pipeline or exploring options for registries (public or private) you can ask your local HPC administrator or research software engineers.
+This could also reflect the survey population in that the majority of HPC administrators provide container technologies but do not actively build them.
 
 ## What container registries are you pushing builds to?
 
