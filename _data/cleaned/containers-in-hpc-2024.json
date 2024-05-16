@@ -2,233 +2,183 @@
     "What is your primary environment?": {
         "question_type": "single_choice",
         "counts": {
-            "Academia": 109,
-            "Commercial": 25,
-            "Both Commercial & National Supercomputer": 1,
-            "Cloud Vendor": 1,
+            "Academia": 116,
+            "National laboratory": 32,
+            "Commercial": 30,
             "Consulting": 9,
+            "Private research institution": 9,
             "Government": 2,
-            "Other": 2,
-            "National laboratory": 30,
-            "Private research institution": 8,
-            "non-profit": 1
+            "Other": 4
         }
     },
     "What is your primary role?": {
         "question_type": "single_choice",
         "counts": {
-            "System Administrator": 52,
-            "Research Software Engineer": 41,
+            "System Administrator": 60,
+            "Research Software Engineer": 40,
+            "Manager": 21,
             "Software Engineer": 18,
-            "Manager": 17,
-            "Computer Scientist": 14,
-            "Scientist": 13,
+            "Computer Scientist": 16,
+            "Scientist": 14,
             "Data Scientist": 12,
+            "Research Computing Facilitator": 6,
+            "Other": 6,
             "Student": 5,
-            "Research Computing Facilitator": 4,
-            "HPC Facilitator": 2,
-            "Associate Director Research Computing": 1,
-            "Cloud HPC Consultant": 1,
-            "HPC Solutions Architect": 1,
-            "HPC Systems Engineer / Architect": 2,
-            "IT Computational Scientist": 1,
-            "IT Research Computing Technologist": 1,
-            "ML Engineer": 1,
-            "Security Analyst": 1,
-            "Startup founder / Chief Architect (AI)": 1,
-            "Director": 1
+            "HPC Solutions Architect": 3,
+            "Director / Associate Director": 2,  
         }
     },
     "How do you rate your experience with containers?": {
         "question_type": "single_choice",
         "counts": {
-            "beginner": 18,
-            "expert": 59,
-            "intermediate": 110,
+            "intermediate": 116,
+            "expert": 61,
+            "beginner": 24,
             "no experience": 2
         }
     },
     "Do you develop container technologies or related tooling?": {
         "question_type": "single_choice",
         "counts": {
-            "No": 120,
-            "Yes": 68
+            "No": 132,
+            "Yes": 70
         }
     },
     "How often do you use containers?": {
         "question_type": "single_choice",
         "counts": {
-            "A few times a week": 35,
-            "A few times a year": 12,
-            "Daily": 83,
-            "Monthly": 23,
-            "Never": 3,
-            "Weekly": 33
+            "Daily": 87,
+            "A few times a week": 39,
+            "Weekly": 34,
+            "Monthly": 26,
+            "A few times a year": 14,
+            "Never": 3
         }
     },
     "Which container technologies are supported on the system(s) you are working on?": {
         "question_type": "multiple_choice",
         "counts": {
-            "Singularity / Apptainer": 154,
-            "Docker": 90,
-            "Podman": 72,
+            "Singularity / Apptainer": 165,
+            "Docker": 95,
+            "Podman": 75,
             "Charliecloud": 13,
-            "Sarus": 10,
-            "Shifter": 7,
+            "Sarus": 12,
+            "Other": 10,
             "Enroot / Pyxis": 8,
-            "Kubernetes": 3,
-            "udocker": 2,
-            "Containerd": 1,
-            "Fuzzball": 1,
-            "I use Rocker in R (from CRAN) to manage my side completely in R": 1,
-            "Our systems do not have support for any container technologies": 1,
-            "containers/runc": 1,
-            "crictl": 1,
-            "crio,containerd,kata": 1,
-            "k3s/containerd": 1,
-            "pcocc": 1,
-            "podman-hpc": 1,
+            "Shifter": 7,
+            "uDocker": 2,
+            "Kubernetes": 2
         }
     },
     "On those same systems and out of the set above, which HPC container technologies are you using?": {
         "question_type": "multiple_choice",
         "counts": {
-            "Singularity / Apptainer": 135,
-            "Docker": 55,
-            "Podman": 40,
-            "I do not use any container technologies on our systems": 12,
-            "Charliecloud": 5,
-            "Sarus": 7,
-            "NVIDIA Enroot and Pyxis": 7,
+            "Singularity / Apptainer": 145,
+            "Docker": 59,
+            "Podman": 43,
+            "I do not use any container technologies on our systems": 13,
+            "Sarus": 8,
+            "Enroot / Pyxis": 7,
+            "Other": 7,
             "Shifter": 5,
+            "Charliecloud": 5,
             "Kubernetes": 3,
-            "Fuzzball": 1,
-            "I assume you don't mean VMs, right? (old school...kinda')": 1,
-            "containers/runc": 1,
-            "crio,containerd,kata": 1,
-            "k3s": 1,
-            "pcocc": 1,
-            "udocker": 1
         }
     },
     "What container technologies do you use on your local machine(s), personal or for work?": {
         "question_type": "multiple_choice",
         "counts": {
-            "Docker": 131,
-            "Singularity / Apptainer": 75,
-            "Podman": 58,
-            "I do not use containers for personal projects or work": 18,
+            "Docker": 140,
+            "Singularity / Apptainer": 79,
+            "Podman": 59,
+            "I do not use containers for personal projects or work": 20,
             "Charliecloud": 7,
-            "I run OSX, so I use finch to set up a Docker VM for me.": 1,
-            "Shifter": 1,
-            "Kubernetes": 1,
-            "none...just on HPC": 1
+            "Other": 5
         }
     },
     "Which HPC container technologies have you not used that you would like to use?": {
         "question_type": "multiple_choice",
         "counts": {
-            "There are no new container runtimes that I want to use": 75,
-            "Podman": 47,
-            "Shifter": 29,
-            "Charliecloud": 28,
+            "There are no new container runtimes that I want to use": 80,
+            "Podman": 53,
+            "Charliecloud": 31,
+            "Shifter": 30,
             "Sarus": 20,
-            "Singularity / Apptainer": 14,
+            "Singularity / Apptainer": 16,
             "Docker": 8,
-            "Customer driven": 1,
-            "NVIDIA containers what I can think of now": 1,
-            "Other": 3
+            "Other": 7,
         }
     },
     "What specification or recipe do you use to build containers?": {
         "question_type": "multiple_choice",
         "counts": {
-            "Dockerfile": 161,
-            "Singularity recipe": 103,
+            "Dockerfile": 173,
+            "Singularity recipe": 110,
             "From scratch or manually": 44,
-            "Buildpacks": 5,
-            "Other": 4,
-            "Containerfile": 1,
-            "Nvidia HPC Container Maker": 1,
-            "Packer": 1
+            "Other": 8,
+            "Buildpacks": 5
         }
     },
     "Do you use any supporting tools to build containers?": {
         "question_type": "multiple_choice",
         "counts": {
-            "spack": 43,
-            "easybuild": 24,
-            "other": 20,
+            "spack": 50,
+            "easybuild": 26,
+            "other": 21,
             "hpc-container-maker": 13,
-            "repo2docker": 12
+            "repo2docker": 13
         }
     },
     "Once built, do you tend to push containers to a central registry?": {
         "question_type": "single_choice",
         "counts": {
-            "No": 81,
-            "Yes": 107
+            "No": 91,
+            "Yes": 110
         }
     },
     "What container registries are you pushing builds to?": {
         "question_type": "multiple_choice",
         "counts": {
             "Docker Hub": 68,
-            "GitLab": 43,
+            "GitLab": 48,
             "GitHub Packages (ghcr.io)": 41,
             "Quay.io": 17,
+            "Self-hosted registry": 17,
             "AWS Elastic Container Registry (ecr)": 15,
-            "Google Container Registry (gcr)": 11,
-            "Harbor (private)": 7,
-            "Internal": 6,
+            "Google Container Registry (gcr)": 13,
             "Azure": 4,
+            "Harbor": 9,
+            "NVIDIA (nvcr.io)": 2,
             "None": 4,
-            "Harbor": 3,
-            "Docker self hosted internal registry": 2,
-            "Artifactory": 1,
-            "Center HPC registry": 1,
-            "Google Artifacts Registry": 1,
-            "IBM Container Registry": 1,
-            "JFrog": 1,
-            "Local directory": 1,
-            "Local hosted": 1,
-            "On prem gitlab": 1,
-            "Own swarm": 1,
-            "Possibly NVIDIAs": 1,
-            "Private registries": 1,
-            "home grown": 1,
-            "hub.opensciencegrid.org": 1,
-            "internal registry": 1,
-            "nvcr.io": 1,
-            "self hosted": 1,
-            "self hosted gitlab": 1
+            "Other": 6
         }
     },
     "In what context(s) are you using containers?": {
         "question_type": "multiple_choice",
         "counts": {
-            "High performance computing (e.g., pull to nodes and run an application / simulation)": 165,
-            "Developer environments on a local machine": 104,
-            "Kubernetes": 62,
-            "Remote developer environments": 57,
-            "Cloud or stateless services (e.g., Cloud Run, App Engine, etc.)": 40,
-            "HPC Workload managers in Kubernetes (e.g., Flux Operator or a Slurm operator)": 29,
-            "Provisioning nodes": 21,
-            "Other": 10
+            "HPC applications or simulations": 178,
+            "Developer environments (local machine)": 109,
+            "Kubernetes": 64,
+            "Remote developer environments": 59,
+            "Cloud or stateless services (e.g., Cloud Run, App Engine, etc.)": 44,
+            "HPC Workload managers in Kubernetes": 29,
+            "Provisioning nodes": 22,
+            "Other": 7,
+            "Continuous Integration / Continuous Deployment": 5,
         }
     },
     "Do you typically have to build containers for multiple architectures?": {
         "question_type": "single_choice",
         "counts": {
-            "No": 126,
-            "Yes": 61
+            "No": 135,
+            "Yes": 65
         }
     },
     "Do you use CI/CD for automated build and deploy?": {
         "question_type": "single_choice",
         "counts": {
-            "No": 89,
-            "Yes": 97
+            "No": 96,
+            "Yes": 103
         }
     },
     "What are you biggest challenges or pain points when using containers, or reasons that you don't use them?": {
@@ -296,7 +246,7 @@
             "MPI support",
             "Getting users to understand apptainer and the hassles of root",
             "Lack of a standard manifest to indicate what's inside the container",
-            "- Running rootless podman as a systemd service is, AFAICT, <a target=\"_blank\" href=\"https://github.com/containers/podman/discussions/20573\">broken</a>.<br>- The story for using containerised MPI workloads (e.g. under Slurm) is complicated and seems to be not well understood.",
+            "Running rootless podman as a systemd service is, AFAICT, <a href='https://github.com/containers/podman/discussions/20573' target='_blank'>broken.</a><br>The story for using containerised MPI workloads (e.g. under Slurm) is complicated and seems to be not well understood.",
             "The biggest pain points is to verify if there is any vulnerability on the containers.",
             "Documentations for non-software engineers is limited and usually lacking applications example for my field (chemistry) which is a pity since it can unlock powerful workflows",
             "Security--use of containers on high side systems is a PITA even when they solve problems.",
@@ -334,7 +284,9 @@
             "Creating containers as non-root user requires manual configuration to permit",
             "biggest pain: size overhead",
             "Container builds requiring sudo",
-            "Time to build and troubleshoot iterations. Still new and defining our standards for building, base containers, naming conventions, user experience, all of it"
+            "Time to build and troubleshoot iterations. Still new and defining our standards for building, base containers, naming conventions, user experience, all of it",
+            "Porting",
+            "MPI of proprietary HPC software"
         ]
     },
     "What can containers not do that you wish they could? What features would you like to see?": {
@@ -364,7 +316,6 @@
             "Automate clean-up of the image following build",
             "Better compatibility",
             "Schedulers like Slurm need a better ability to deploy a collection of containers with private, encrypted container networking. Of course Kubernetes could be used, but that requires a very different HPC architecture than traditional HPC.",
-            "Not sure",
             "Possibly more tutorials and simplicification of using containers",
             "Help to cross the OS platform automatically",
             "Be reproducible in perPettit which they are far from",
@@ -377,7 +328,7 @@
             "Easy \"debug mode/tools\" - you can always `exec` into a container, but then there's a vastly different set of software installed (might not have `curl`, and so on). In k8s environments the concept is easier (create a new container in the pod with all your tools, share namespaces & mounts) but still not perfect.",
             "Be as fast as native baremetal applications.",
             "I'd like to see checkpoint-migration-restore with production-ready integration with as many container technologies and schedulers as possible.",
-            "The CNCF and HPC facilities should take a close look at docker-nvidia-glx-desktop and docker-nvidia-egl-desktop, as well as selkies-gstreamer for graphical containers in unprivileged clusters.<br>Most HPC clusters and NSF-funded infrastructure are unprivileged and utilizing hardware-accelerated GUIs within a container was historically hard to perform.",
+            "The CNCF and HPC facilities should take a close look at <a href='https://github.com/selkies-project/' target='_blank'>docker-nvidia-glx-desktop</a> and <a href='https://github.com/selkies-project/docker-nvidia-egl-desktop' target='_blank'>docker-nvidia-egl-desktop</a>, as well as <a href='https://github.com/selkies-project/selkies-gstreamer' target='_blank'>selkies-gstreamer</a> for graphical containers in unprivileged clusters.<br>Most HPC clusters and NSF-funded infrastructure are unprivileged and utilizing hardware-accelerated GUIs within a container was historically hard to perform.",
             "Easily access data on a broad range of systems, be truly portable.",
             "Seamless interaction without careful setup",
             "Currently they do all I need",
@@ -392,7 +343,8 @@
             "Drivers! (Yes I know)",
             "improvement in regards to graphics",
             "Nesting containers",
-            "Not sure yet. But need to chain multiple containers in a pipeline to support various researcher workflows (haven't done this yet and hoping its possible)"
+            "Not sure yet. But need to chain multiple containers in a pipeline to support various researcher workflows (haven't done this yet and hoping its possible)",
+            "Support for Linux device tree validation - would like containers built for specific architectures and accelerators (rdma nic, gpu, etc). This feature could be a serialization of the device tree file that gets validated with a string comparison on container initialization, or maybe a file with linear fields for different features that have hashed values which are validated against the machine running the image so that the container runtime could provide useful errors (architectures dont match, etc). Users could pick and choose what information to bake into the container so as little as architecture (x86, arm, riscv, etc) or as much as accelerator (gpu, rdma nic, etc)"
         ]
     }
 }

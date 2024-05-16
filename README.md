@@ -10,6 +10,10 @@ and will be deployed to an interface on GitHub pages (more likely).
  - [Results Data](data) that is downloaded from the Google Form (5/11/2024)
  - [Cleaned Data](_data) that is used on the site.
 
+## Summary
+
+ - **2024** We got a total of 202 responses!
+
 ## Development
 
 ### Local
