@@ -1,5 +1,7 @@
 # HPC Containers Survey
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.11206333.svg)](https://doi.org/10.5281/zenodo.11206333)
+
 ![images/features/home.png](images/features/home.png)
 
 This is the HPC Containers survey started in 2024 
